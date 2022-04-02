@@ -39,7 +39,7 @@
         <section class="four columns">
             <h3>Auctions</h3>
             <a class="button button-primary" href="${pageContext.request.contextPath}/auction.do?action=newAuction">Create
-                an auction</a>j
+                an auction</a>
 
             <a class="button button"
                href="${pageContext.request.contextPath}/search.do?action=searchAuctions&bidBy=you">View all auctions you

@@ -75,7 +75,7 @@
                 <c:if test="${not empty imageLst}">
                     <h5>Images:</h5>
                     <c:forEach var="image" items="${imageLst}">
-                        <img src="image_auction/${image.imageFileName}" class="auction__img">
+                        <img src="${pageContext.request.contextPath}/images/${image.imageFileName}" class="auction__img">
                     </c:forEach>
                 </c:if>
 
