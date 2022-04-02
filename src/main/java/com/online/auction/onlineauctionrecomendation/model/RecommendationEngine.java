@@ -11,11 +11,12 @@ import java.util.*;
  */
 public class RecommendationEngine {
 
-    private int K_Neighbours = 5;
+    private int K_Neighbours = 2;
     private int Items_to_recommend = 5;
 
     /**
      * returns the list of recommendations (AuctionEntities)
+     *
      * @param uid the logged-in userId
      * @return the list of recommendations
      */
@@ -26,6 +27,7 @@ public class RecommendationEngine {
 
     /**
      * returns the list of K-Nearest-Neighbours (UserIds)
+     *
      * @param uid the logged-in userId
      * @return the list of K-Nearest userIds.
      */
@@ -57,11 +59,13 @@ public class RecommendationEngine {
                 break;
             }
         }
+        System.out.println("knn:::" + knn);
         return knn;
     }
 
     /**
      * Given the KNN and the UserId returns Items_to_recommend (5) auctions.
+     *
      * @param uid the logged-in userId
      * @param knn the list of K-Nearest-Neighbours (userIds).
      * @return the list of recommendations
@@ -93,6 +97,7 @@ public class RecommendationEngine {
                 items++;
             }
         }
+        System.out.println(recommendationsLst.size());
         return recommendationsLst;
     }
 
@@ -107,16 +112,18 @@ public class RecommendationEngine {
 
     /**
      * Sorts the SortedSet by value descending order
+     *
      * @param map All neighbours
      * @param <K> User Ids
      * @param <V> Similarity with the logged-in user
      * @return the sorted by value (descending order) set
      */
-    private static <K,V extends Comparable<? super V>>
-    SortedSet<Map.Entry<K,V>> entriesSortedByValues(Map<K,V> map) {
-        SortedSet<Map.Entry<K,V>> sortedEntries = new TreeSet<Map.Entry<K,V>>(
-                new Comparator<Map.Entry<K,V>>() {
-                    @Override public int compare(Map.Entry<K,V> e1, Map.Entry<K,V> e2) {
+    private static <K, V extends Comparable<? super V>>
+    SortedSet<Map.Entry<K, V>> entriesSortedByValues(Map<K, V> map) {
+        SortedSet<Map.Entry<K, V>> sortedEntries = new TreeSet<Map.Entry<K, V>>(
+                new Comparator<Map.Entry<K, V>>() {
+                    @Override
+                    public int compare(Map.Entry<K, V> e1, Map.Entry<K, V> e2) {
                         int res = e2.getValue().compareTo(e1.getValue());
                         return res != 0 ? res : 1;
                     }

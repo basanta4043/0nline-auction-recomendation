@@ -9,7 +9,6 @@
     <meta charset="utf-8">
     <title>Welcome Page</title>
     <jsp:useBean id="notifLst" class="java.util.ArrayList" scope="request"/>
-    <jsp:useBean id="recommendationLst" class="java.util.ArrayList" scope="request"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/css/skeleton.css" rel="stylesheet">
