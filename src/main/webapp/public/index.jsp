@@ -65,7 +65,7 @@
                 <a class="button button-primary" href="register.jsp" style="margin-top: 5px;">register</a>
             </p>
             <p class="small-p">
-                <a class="button button-primary" href="${pageContext.request.contextPath}/admin/index.jsp" style="margin-top: 5px;">admin login</a>
+                <a class="button button-primary" href="${pageContext.request.contextPath}/public/backoffice.jsp" style="margin-top: 5px;">admin login</a>
             </p>
         </div>
         <!-- end of register column -->
