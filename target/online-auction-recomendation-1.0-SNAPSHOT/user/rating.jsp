@@ -14,7 +14,7 @@
 </head>
 <body>
 <c:if test="${empty user or user.userId == to_user.userId}">
-    <c:redirect url="/"/>
+    <c:redirect url="${pageContext.request.contextPath}/"/>
 </c:if>
 <c:if test="${not empty param.aid}">
 <!-- HEADER STUFF -->

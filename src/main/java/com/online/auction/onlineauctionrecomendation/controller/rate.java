@@ -31,8 +31,8 @@ public class rate extends HttpServlet {
         HttpSession session = request.getSession();
 
         long from_id = ((UserEntity) session.getAttribute("user")).getUserId();
-        long to_id = Long.parseLong(request.getParameter("to_id"));
-        long aid = Long.parseLong(request.getParameter("aid"));
+        long to_id = Long.parseLong(request.getParameter("to_id").split("/")[0]);
+        long aid = Long.parseLong(request.getParameter("aid").split("/")[0]);
         AuctionEntity auction = new AuctionService().getAuction(aid);
         switch (request.getParameter("action")) {
             case "addRating":
@@ -53,14 +53,14 @@ public class rate extends HttpServlet {
                 NotificationEntity notificationEntity = new NotificationEntity(to_id, "rate", aid, from_id);
                 notificationService.addEntity(notificationEntity);
 
-                String url = "/rate.do?action=getRating&to_id=" + to_id + "&aid=" + aid;
+                String url = "/online-auction/rate.do?action=getRating&to_id=" + to_id + "&aid=" + aid;
                 response.sendRedirect(url);
                 return;
             case "updateRating":
                 rating = Integer.parseInt(request.getParameter("rating"));
                 ratingService.updateRating(from_id, to_id, aid, rating);
 
-                url = "/rate.do?action=getRating&to_id=" + to_id + "&aid=" + aid;
+                url = "/online-auction/rate.do?action=getRating&to_id=" + to_id + "&aid=" + aid;
                 response.sendRedirect(url);
                 return;
         }

@@ -27,7 +27,7 @@
                 <p class="status--error">${errorMsg}</p>
                 </c:if>
                 <!-- Restriction for validation are inserted on the end of input -->
-                <form action="${pageContext.request.contextPath}/user" method="POST" id="registerForm">
+                <form action="${pageContext.request.contextPath}/user.do" method="POST" id="registerForm">
                     <input type="hidden" name="action" value="register">
                     <div class="row">
                         <div class="six columns">
@@ -121,7 +121,7 @@
 </div>
 
 </div>
-<script src="../js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script>
     lat = 0;
     lng = 0;
@@ -271,8 +271,7 @@
     });
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7om9lzVVpATrE6I8ceaK9vMyE6Bi2KSw&callback=initMap&libraries=places"
-        async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbWu0qOqssw1QzgbNXNFmESPXulNHC1aw&callback=initMap&libraries=places"/>
 <script src="${pageContext.request.contextPath}/js/scripts.js"></script>
 </body>
 </html>

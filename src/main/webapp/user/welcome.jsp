@@ -17,7 +17,7 @@
     <h1>Wait for your approval.</h1>
     <h4>Your registration was applied successfully.</h4>
     <p>Please note that your account will be active when a moderator accept your registration.</p>
-    <a class="button button-primary" href="/">Start Page</a>
+    <a class="button button-primary" href="${pageContext.request.contextPath}/">Start Page</a>
 </div>
 
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>

@@ -32,7 +32,7 @@ public class message extends HttpServlet {
         String next_page = "/user/homepage.jsp";
         HttpSession session = request.getSession();
 
-        long rid = Long.parseLong(request.getParameter("rid"));                 // the receiver of conversation
+        long rid = Long.parseLong(request.getParameter("rid").split("/")[0]);                 // the receiver of conversation
         if (request.getParameter("action") == null) {
             RequestDispatcher view = request.getRequestDispatcher(next_page);
             view.forward(request, response);
@@ -40,7 +40,7 @@ public class message extends HttpServlet {
         String action = request.getParameter("action");
         if (action.equals("addNewMessage")) {
             long sid = ((UserEntity) session.getAttribute("user")).getUserId(); // the sender
-            long aid = Long.parseLong(request.getParameter("aid"));             // the auction id
+            long aid = Long.parseLong(request.getParameter("aid").split("/")[0]);             // the auction id
             String msg = request.getParameter("message_text");
 
             MessagesEntity messagesEntity = new MessagesEntity(sid, rid, aid, msg);
@@ -48,21 +48,21 @@ public class message extends HttpServlet {
             NotificationEntity notificationEntity = new NotificationEntity(rid, "message", aid, sid, mid);
             notificationService.addEntity(notificationEntity);
 
-            String url = "/message.do?action=getConversation&rid=" + rid + "&aid=" + aid;
+            String url = "/online-auction/message.do?action=getConversation&rid=" + rid + "&aid=" + aid;
             response.sendRedirect(url);
             return;
         } else if (action.equals("deleteMessage")){
             long uid = ((UserEntity) session.getAttribute("user")).getUserId(); // just for safety check
-            long mid = Long.parseLong(request.getParameter("mid"));             // message id to delete
-            long sender_id = Long.parseLong(request.getParameter("sid"));
-            long aid = Long.parseLong(request.getParameter("aid"));
+            long mid = Long.parseLong(request.getParameter("mid").split("/")[0]);             // message id to delete
+            long sender_id = Long.parseLong(request.getParameter("sid").split("/")[0]);
+            long aid = Long.parseLong(request.getParameter("aid").split("/")[0]);
 
                 /* check if someone else tries to delete a message that he/she does not own */
             if (sender_id == uid) {
                 messagesService.deleteMessage(mid);
             }
 
-            String url = "/message.do?action=getConversation&rid=" + rid + "&aid=" + aid;
+            String url = "/online-auction/message.do?action=getConversation&rid=" + rid + "&aid=" + aid;
             response.sendRedirect(url);
             return;
         }
